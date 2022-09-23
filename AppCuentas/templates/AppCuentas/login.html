@@ -1,0 +1,21 @@
+{% extends "padre.html" %}
+
+{% load static %} 
+
+{% block paginahead %}
+<h1 class="mb-3">LOGIN</h1>
+{% endblock %} 
+
+{% block articulo1 %}
+<h1>FORMULARIO DE INGRESO</h1>
+<form action="{% url 'login' %}" method="POST"> {% csrf_token %}
+
+    <table>
+        {{ formulario.as_table }}
+    </table>
+
+<button type="submit">INICIAR SESSION</button>
+</form>
+
+<h2>{{ mensaje }}</h2>
+{% endblock %} 
