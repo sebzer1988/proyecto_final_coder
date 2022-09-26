@@ -50,7 +50,8 @@ def register(request):
     else:
         form=UserRegisterForm()
         return render (request, "AppCuentas/register.html", {"formulario":form})
-
+        
+login_required
 def editarPerfil(request):
     usuario=request.user
     if request.method=="POST":
@@ -62,7 +63,7 @@ def editarPerfil(request):
             usuario.password=info["password1"]
             usuario.password=info["password2"]
             usuario.save()
-            return render(request, "inicio.html", {"mensaje":"Perfil editado correctamente"})
+            return render(request, "AppCuentas/getPerfil.html", {"mensaje":"Perfil editado correctamente"})
         else:
             return render (request, "AppCuentas/editarPerfil.html", {"formulario":form, "usuario":usuario, "mensaje":"FORMULARIO INVALIDO"})
     else:
@@ -81,9 +82,9 @@ def agregarAvatar(request):
 
             avatar=Avatar(user=request.user, imagen=formulario.cleaned_data["imagen"])
             avatar.save()
-            return render(request, "inicio.html", {"usuario":request.user, "mensaje":"AVATAR AGREGADO EXISTOSAMENTE"})
+            return render(request, "AppCuentas/getPerfil.html", {"usuario":request.user, "mensaje":"Avatar cambiado"})
         else:
-            return render(request, "AppCuentas/agregarAvatar.html", {"formulario":formulario, "mensaje":"FORMULARIO INVALDO"})
+            return render(request, "AppCuentas/agregarAvatar.html", {"formulario":formulario, "mensaje":"Formulario invalido"})
     else:
         formulario=AvatarForm()
         return render(request, "AppCuentas/agregarAvatar.html", {"formulario":formulario, "usuario":request.user})
@@ -97,6 +98,5 @@ def obtenerAvatar(request):
         imagen="/media/avatares/avatar1.png"
     return imagen
 
-class userDetalle(DetailView):
-    model=User
-    template_name= "AppCuentas/getPerfil.html"
+def getPerfil(request):
+    return render(request, "AppCuentas/getPerfil.html", {"mensaje":"Gracias","avatar":obtenerAvatar(request)})

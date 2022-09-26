@@ -1,17 +1,29 @@
 {% extends "padre.html" %}
 
-{% load static %} 
+{% load static %}
 
 {% block paginahead %}
-<h1 class="mb-3">PERFIL DE {{ user.username }}</h1>
+<h1 class="mb-3">Perfil de {{ user.username }}</h1>
 {% endblock %} 
-
 {% block articulo1 %}
 <h2>Asi se ve su perfil:</h2>
-<p>Avatar: <i><img src="{{ avatar }}" alt=""></i></p>
+<p>Avatar:<img height="200px" src="{{ avatar }}" alt=""></p>
+<a class="btn btn-primary" href="{% url 'agregarAvatar' %}">Cambiar avatar</a>
 <p>Usuario: <i>{{ user.username }}</i></p>
 <p>Email: <i>{{ user.email }}</i></p>
+<a class="btn btn-primary" href="{% url 'editarPerfil' %}">Editar perfil</a>
 
+
+{% block articulo2 %}
+{% endblock %} 
+
+{% block articulo3 %}
+{% endblock %} 
+{% block articulo4 %}
+{% endblock %}
+{% block boton %}
+
+{% endblock %} 
 
 
 

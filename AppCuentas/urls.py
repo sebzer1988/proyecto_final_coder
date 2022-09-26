@@ -10,7 +10,7 @@ urlpatterns = [
     path("logout/", LogoutView.as_view(template_name="AppCuentas/logout.html"), name="logout"),
     path("editarPerfil/", editarPerfil, name="editarPerfil"),
     path("agregarAvatar/", agregarAvatar, name="agregarAvatar"),
-    path("perfil/<pk>", userDetalle.as_view(), name="getPerfil"),
+    path("perfil/", getPerfil, name="getPerfil"),
 
 
 ]
