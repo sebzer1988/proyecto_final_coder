@@ -6,6 +6,7 @@
 <h1 class="mb-3">Perfil de {{ user.username }}</h1>
 {% endblock %} 
 {% block articulo1 %}
+{{ mensaje }}
 <h2>Asi se ve su perfil:</h2>
 <p>Avatar:<img height="200px" src="{{ avatar }}" alt=""></p>
 <a class="btn btn-primary" href="{% url 'agregarAvatar' %}">Cambiar avatar</a>

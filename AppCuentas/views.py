@@ -58,7 +58,6 @@ def editarPerfil(request):
         form=UserEditForm(request.POST)
         if form.is_valid():
             info=form.cleaned_data
-            usuario.username=info["username"]
             usuario.email=info["email"]
             usuario.password=info["password1"]
             usuario.password=info["password2"]
@@ -89,7 +88,7 @@ def agregarAvatar(request):
         formulario=AvatarForm()
         return render(request, "AppCuentas/agregarAvatar.html", {"formulario":formulario, "usuario":request.user})
 
-
+@login_required
 def obtenerAvatar(request):
     lista=Avatar.objects.filter(user=request.user)
     if len(lista)!=0:
@@ -98,5 +97,6 @@ def obtenerAvatar(request):
         imagen="/media/avatares/avatar1.png"
     return imagen
 
+login_required
 def getPerfil(request):
-    return render(request, "AppCuentas/getPerfil.html", {"mensaje":"Gracias","avatar":obtenerAvatar(request)})
+    return render(request, "AppCuentas/getPerfil.html", {"avatar":obtenerAvatar(request)})
